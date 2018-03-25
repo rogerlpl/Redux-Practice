@@ -2,19 +2,21 @@ import React from 'react';
 import { render } from 'react-dom';
 import Home from '../pages/containers/home';
 // import Playlist from './src/playlist/components/playlist';
-import data from '../api.json';
+// import data from '../api.json';
 // console.log('Hola mundo!' )
-import normalizedData from '../schemas/index.js';
+import data from '../schemas/index.js';
 import {Provider} from 'react-redux';
 
 import {createStore} from 'redux';
 import reducer from '../reducers/data'
 
-console.log(normalizedData)
+
 
 const initialState = {
     data: {
-        ...data,  
+        // ...data,  
+        entities: data.entities,
+        categories: data.result.categories
     },
     search: [],
 }
