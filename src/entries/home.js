@@ -8,22 +8,26 @@ import data from '../schemas/index.js';
 import {Provider} from 'react-redux';
 
 import {createStore} from 'redux';
-import reducer from '../reducers/data'
+import reducer from '../reducers/index'
 
 
 
-const initialState = {
-    data: {
-        // ...data,  
-        entities: data.entities,
-        categories: data.result.categories
-    },
-    search: [],
-}
+// const initialState = {
+//     data: {
+//         // ...data,  
+//         entities: data.entities,
+//         categories: data.result.categories,
+//         search: [],
+//     },
+//     modal:{
+//         visibility: false,
+//         mediaId: null,
+//     }
+// }
 
 const store = createStore(
     reducer,
-    initialState,
+    {},
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
