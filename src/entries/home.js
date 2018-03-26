@@ -1,39 +1,40 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Home from '../pages/containers/home';
-// import Playlist from './src/playlist/components/playlist';
-// import data from '../api.json';
-// console.log('Hola mundo!' )
-import data from '../schemas/index.js';
 import {Provider} from 'react-redux';
-
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducer from '../reducers/index'
 import {Map as map} from 'immutable';
 
-
-// const initialState = {
-//     data: {
-//         // ...data,  
-//         entities: data.entities,
-//         categories: data.result.categories,
-//         search: [],
-//     },
-//     modal:{
-//         visibility: false,
-//         mediaId: null,
+// function logger({getState, dispatch}){
+//     // return (metodo para despachar el siguiente middleware) => {
+//     return (next) => {
+//         return (action)=> {
+//             console.log('este es mi estado actual', getState().toJS())
+//             console.log('vamos a enviar esta accion', action)
+//             const value = next(action)
+//             console.log('este es mi nuevo estado', getState().toJS())
+//             return value
+//         }
 //     }
 // }
+
+const logger= ({getState, dispatch}) => next => action =>{
+    console.log('este es mi estado actual', getState().toJS())
+    console.log('vamos a enviar esta accion', action)
+    const value = next(action)
+    console.log('este es mi nuevo estado', getState().toJS())
+    return value
+}
 
 const store = createStore(
     reducer,
     map(),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(logger)
+   // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 const homeContainer = document.getElementById('home-container')
-// ReactDOM.render(que voy a renderizar, donde lo haré);
-// const holaMundo = <h1>hola Estudiante!</h1>;
 
 render( 
     <Provider store={store}>
