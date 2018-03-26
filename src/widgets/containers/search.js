@@ -10,6 +10,8 @@ class SearchContainer extends Component {
   }
   handleSubmit = event => {
     event.preventDefault();
+    // fecth(`http://miapi.com/buscar/${this.input.value}`).then((data)=>{
+    // })
     this.props.actions.searchEntities(this.input.value)
   }
   setInputRef = element => {
