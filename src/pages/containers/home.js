@@ -31,6 +31,7 @@ class Home extends Component {
         <HomeLayout>
           <Related />
           <Categories
+            isLoading={this.props.isLoading}
             categories={this.props.categories}
             handleOpenModal={this.handleOpenModal}
             search={this.props.search}
@@ -72,6 +73,7 @@ function mapStateToProps(state, props){
     categories: categories,
     search: searchResults,
     modal: state.get('modal'),
+    isLoading: state.get('isLoading').get('active')
   }
 }
 function mapDispatchToProps(dispatch){
